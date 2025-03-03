@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdarg.h>
 
 #define UNUSED(x) (void) (x)
 
@@ -43,7 +44,16 @@
 #define MIN(a, b) (a > b ? b : a)
 #define MAX(c, d) (c > d ? c : d)
 
-static inline void print(char* txt) { fprintf(stderr, "%s\n", txt); }
+// static inline void print(char* txt) { fprintf(stderr, "%s\n", txt); }
+static inline void print(const char *format, ...)
+{
+    va_list args;
+    va_start(args, format);
+    vfprintf(stderr, format, args);
+    fprintf(stderr, "\n"); // Ensure newline at the end
+    va_end(args);
+}
+
 static inline void print_hex(uint8_t* buf, uint16_t len) {
     for (int i = 0; i < len; i++) {
         fprintf(stderr, "%02x ", *(buf + i));
