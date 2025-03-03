@@ -40,6 +40,8 @@
 #define CIPHERTEXT 0x52
 #define MAC 0x53
 
+#define MAX_PLAINTEXT 943
+
 // Helpers
 #define MIN(a, b) (a > b ? b : a)
 #define MAX(c, d) (c > d ? c : d)
